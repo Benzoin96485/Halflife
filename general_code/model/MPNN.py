@@ -1,8 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Imports
+# std libs
+# ...
+
+# 3rd party libs
 import torch
 from torch import nn
 from dgl.readout import sum_nodes
 from dgl.nn.pytorch.conv import GatedGraphConv, RelGraphConv, NNConv
 import torch.nn.functional as F
+
+# my modules
 
 
 def fc_layer(dropout, in_feats, out_feats):

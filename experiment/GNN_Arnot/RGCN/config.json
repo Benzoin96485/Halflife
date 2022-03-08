@@ -1,0 +1,26 @@
+{
+    "data": {
+        "data_path": "",
+        "smi_col": "smiles",
+        "label_name_list": ["logHT"],
+        "graph_cache_path": "",
+        "split_method": "random",
+        "split_ratio": [8, 1, 1]
+    },
+
+    "graph": {
+        "graph_type": "bigraph",
+        "atom_feat_name": "dgllife_canonical",
+        "bond_feat_name": "dgllife_canonical"
+    },
+
+    "framework": {
+
+    },
+
+    "run": {
+        "seed_init": 114514,
+        "eval_times": 10,
+        "batch_size": 128
+    }
+}
