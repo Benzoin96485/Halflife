@@ -225,11 +225,11 @@ class MPNN(nn.Module):
         prediction_all = self.fcn(mol_embedding)
         return prediction_all, mol_embedding, weight
 
-    def build_gnn_layers(self, gnn_in_feats, gnn_hidden_feats, **kwargs):
-        in_feats = gnn_in_feats
-        for out_feats in gnn_hidden_feats:
-            self.gnn_layers.append(GNNLayer(in_feats, out_feats, **kwargs))
-            in_feats = out_feats
+    def build_gnn_layers(self, gnn_in_nfeats, gnn_hidden_nfeats, **kwargs):
+        in_nfeats = gnn_in_nfeats
+        for out_nfeats in gnn_hidden_nfeats:
+            self.gnn_layers.append(GNNLayer(in_nfeats, out_nfeats, **kwargs))
+            in_nfeats = out_nfeats
 
     def build_readout(self, readout_type="weight_and_sum", **kwargs):
         if readout_type == "weight_and_sum":

@@ -1,17 +1,38 @@
+from sklearn.utils import shuffle
 from general_code.data.buildDataset import csv2gdata, split_data
+from torch.utils.data import DataLoader
 
-
-def load_data(config, seed):
-    dataset = csv2gdata(
-        csv=config.data["data_path"], 
-        graph_type=config.graph["graph_type"], 
-        node_feat_name=config.graph["atom_feat_name"], 
-        edge_feat_name=config.graph["bond_feat_name"], 
-        smi_col=config.data["smi_col"], 
-        cache_path=config.data["cache_path"]
+def make_dataset(config):
+    return csv2gdata(
+        data_path=config.data_path, 
+        graph_type=config.graph_type, 
+        node_feat_name=config.atom_feat_name, 
+        edge_feat_name=config.bond_feat_name, 
+        smi_col=config.smi_col, 
+        cache_path=config.cache_path
     )
+
+def make_loaders(dataset, config, seed):
     train_set, val_set, test_set = split_data(
         dataset=dataset,
-        method=config.data["split_method"],
-        ratio=
+        method=config.split_method,
+        ratio=config.split_ratio,
+        seed=seed
     )
+    batch_size = config.batch_size
+    train_loader = DataLoader(
+        dataset=train_set, 
+        batch_size=batch_size, 
+        shuffle=True
+    )
+    val_loader = DataLoader(
+        dataset=val_set, 
+        batch_size=batch_size, 
+        shuffle=True
+    )
+    test_loader = DataLoader(
+        dataset=test_set, 
+        batch_size=batch_size, 
+        shuffle=True
+    )
+    return train_loader, val_loader, test_loader

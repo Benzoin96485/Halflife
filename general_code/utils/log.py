@@ -9,7 +9,7 @@ import time
 import pandas as pd
 
 # my modules
-from general_code.utils.settings import set_random_seed 
+from general_code.utils.env import set_random_seed 
 
 
 class Logger:

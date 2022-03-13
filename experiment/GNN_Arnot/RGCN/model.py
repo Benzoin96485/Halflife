@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+from general_code.model.BaseGNN import MPNN
+from config import ConfigRGCN
 
-# Imports
-# std libs
-# ...
 
-# 3rd party libs
-# ...
-
-# my modules
+def make_model(config: ConfigRGCN):
+    config.add_gnn_in_feats()
+    model = MPNN(
+        **config.net,
+    )
