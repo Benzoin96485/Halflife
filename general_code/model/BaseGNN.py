@@ -85,7 +85,7 @@ class FCN(nn.Module):
 
 
 class WeightAndSum(nn.Module):
-    def __init__(self, gnn_out_feats, n_tasks=1, specific_weighting=True, **kwargs):
+    def __init__(self, gnn_out_nfeats, n_tasks=1, specific_weighting=True, **kwargs):
         """
         A summation readout layer with task-specific self-attention weight
         :param gnn_out_feats: the atom feature size of last gnn layer
@@ -94,12 +94,12 @@ class WeightAndSum(nn.Module):
         """
         super(WeightAndSum, self).__init__()
         self.specific_weighting = specific_weighting
-        self.in_feats = gnn_out_feats
+        self.in_nfeats = gnn_out_nfeats
         self.n_tasks = n_tasks
         if specific_weighting:
-            self.weight = nn.ModuleList([self.atom_weight(self.in_feats) for _ in range(self.n_tasks)])
+            self.weight = nn.ModuleList([self.atom_weight(self.in_nfeats) for _ in range(self.n_tasks)])
         else:
-            self.weight = nn.ModuleList(self.atom_weight(self.in_feats))
+            self.weight = nn.ModuleList(self.atom_weight(self.in_nfeats))
 
     def forward(self, bg, feats):
         """
