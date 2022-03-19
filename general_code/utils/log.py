@@ -18,17 +18,16 @@ class Logger:
         # self.result_pd = pd.DataFrame(columns=(config.label_name_list + ['group']) * 3)
         self.start_time = 0
         self.end_time = 0
-        self.result_dict = {}
+        self.result_list = []
         self.time_id = 0
 
     def cur_dict(self):
-        return self.result_dict[self.time_id]
+        return self.result_list[-1]
 
     def start(self, seed, time_id):
-        self.seed_list.append(seed)
         self.time_id = time_id
-        self.result_dict[time_id] = dict()
-        self.cur_dict().update({"loss": [], "train_score": [], "val_score": [], "val_mid_result": []})
+        self.result_list.append(dict())
+        self.cur_dict().update({"loss": [], "train_score": [], "val_score": [], "val_mid_result": [], "seed": seed, "time_id": time_id})
         set_random_seed(seed)
         self.start_time = time.time()
         

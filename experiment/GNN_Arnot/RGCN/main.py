@@ -21,7 +21,7 @@ def main():
                 train_loader, val_loader, test_loader = make_loaders(dataset, config, seed_this_time)
         else:
             train_loader, val_loader, test_loader = make_loaders(dataset, config, seed_this_time)
-        model = MPNN(**config.net).to(config.device)
+        model = MPNN(**config.net_config).to(config.device)
         optimizer = Adam(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
         stopper = EarlyStopping(
             mode=config.early_stop_mode,

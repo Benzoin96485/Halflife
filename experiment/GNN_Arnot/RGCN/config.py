@@ -12,5 +12,7 @@ def make_config(config_path="config.json"):
     config.make_bond_featurizer(config.bond_feat_name, config.bond_feat_type)
     config.make_loss_criterion(config.loss_name)
     config.checkpoint_path = make_path("experiment", "log", __file__, "checkpoint.pth")
-    config.graph_cache_path = make_path("experiment", "log", __file__, "graph.bin")
+    config.cache_path = make_path("experiment", "log", __file__, "graph.bin")
+    config.net_config["gnn_in_nfeats"] = config.atom_featurizer.feat_size()
+    config.net_config["num_rels"]= config.bond_featurizer.feat_size()
     return config

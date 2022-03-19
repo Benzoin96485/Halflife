@@ -27,9 +27,9 @@ def make_path(old_module: str, new_module: str, file_path: str, add_path: str) -
     dir_list = file_path.split("/")
     old_index = dir_list.index(old_module)
     dir_list[old_index] = new_module
-    new_path = "/".join(new_module) + "/" + add_path
+    new_path = "/".join(dir_list[:-1])
     if not os.path.exists(new_path):
         os.makedirs(new_path)
         print(f"make new directory: {new_path}")
-    return new_path
+    return new_path + "/" + add_path
 

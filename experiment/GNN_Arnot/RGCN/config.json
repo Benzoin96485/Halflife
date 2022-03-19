@@ -18,8 +18,11 @@
     },
 
     "net_config": {
-        "gnn_hidden_nfeats": 0,
-        "readout_type": "weight_and_sum"
+        "gnn_hidden_nfeats": [64, 128],
+        "gnn_out_nfeats": [64, 128],
+        "readout_type": "weight_and_sum",
+        "rgcn_loop": true,
+        "rgcn_dropout": 0.2
     },
 
     "run_config": {

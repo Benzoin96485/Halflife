@@ -6,8 +6,8 @@ def make_dataset(config):
     return csv2gdata(
         data_path=config.data_path, 
         graph_type=config.graph_type, 
-        node_feat_name=config.atom_feat_name, 
-        edge_feat_name=config.bond_feat_name, 
+        node_featurizer=config.atom_featurizer, 
+        edge_featurizer=config.bond_featurizer, 
         smi_col=config.smi_col, 
         cache_path=config.cache_path
     )
