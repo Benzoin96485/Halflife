@@ -7,10 +7,10 @@ Define the class Config.
 # Imports
 # std libs
 import json
-from attr import has
 
 # 3rd party libs
 from dgllife.utils import *
+from torch.nn import MSELoss
 
 # my modules
 from general_code.data.featurizer import RGCNBondFeaturizer
@@ -29,13 +29,18 @@ class Config():
             config_path: the path of configuration file
             format: the format of the file
         """
-        if format == "json":
-            self.config = json.load(config_path)
-        for name, group in self.config:
+        with open(config_path) as f:
+            if format == "json":
+                self.config = json.load(f)
+        for name, group in self.config.items():
             self.__setattr__(name, group)
             if type(group) == type(dict()):
                 for key, value in group.items():
                     self.__setattr__(key, value)
+
+    def make_loss_criterion(self, criterion):
+        if criterion == "mse":
+            self.loss_criterion = MSELoss(reduction="none")
 
 
 
@@ -44,7 +49,7 @@ class GNNConfig(Config):
     A general class for operating the configuration of GNN experiments.
     """
     def __init__(self, config_path, format):
-        super.__init__(config_path, format)
+        super().__init__(config_path, format)
     
     def make_atom_featurizer(self, name, atom_feat_type=[]):
         if name == "dgllife_canonical":

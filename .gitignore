@@ -4,3 +4,5 @@ old*/
 result/
 data/
 *.bin
+run.sh
+__pycache__
