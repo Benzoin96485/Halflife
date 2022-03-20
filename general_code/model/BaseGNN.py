@@ -178,7 +178,9 @@ class GNNLayer(nn.Module):
         # if self.model_type == "MPNN0":
             # if etype.dtype != torch.float32:
                 # etype = etype.type(torch.float32)
-        print(bg)
+        # print(bg)
+        # print(node_feats.shape)
+        # print(etype.shape)
         new_feats = self.graph_conv_layer(bg, node_feats, etype)
         if self.residual:
             res_feats = self.activation(self.res_connection(node_feats))
@@ -203,7 +205,7 @@ class MPNN(nn.Module):
         self.build_readout(**kwargs)
         self.fcn = FCN(**kwargs)
 
-    def forward(self, bg, node_feats, e_feats, **kwargs):
+    def forward(self, bg, node_feats, edge_feats, **kwargs):
         """
         :param bg: Batched DGL graph, processing multiple molecules in parallel
         :param node_feats: FloatTensor of shape (N, M1)
@@ -218,9 +220,9 @@ class MPNN(nn.Module):
         """
         for gnn in self.gnn_layers:
             if gnn.model_type == "RGCN":
-                node_feats = gnn(bg, node_feats, e_feats, norm=None)
+                node_feats = gnn(bg, node_feats, edge_feats, norm=None)
             elif gnn.model_type in ["GGNN", "MPNN0"]:
-                node_feats = gnn(bg, node_feats, e_feats)
+                node_feats = gnn(bg, node_feats, edge_feats)
 
         mol_embedding, weight = self.readout(bg, node_feats)
         prediction_all = self.fcn(mol_embedding)

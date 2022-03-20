@@ -7,6 +7,7 @@ import time
 
 # 3rd party libs
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # my modules
 from general_code.utils.env import set_random_seed 
@@ -15,7 +16,8 @@ from general_code.utils.env import set_random_seed
 class Logger:
     def __init__(self, config):
         self.config = config
-        # self.result_pd = pd.DataFrame(columns=(config.label_name_list + ['group']) * 3)
+        self.result_pd = pd.DataFrame(columns=(config.task_names + ['group']) * 3)
+        self.total_time = 0
         self.start_time = 0
         self.end_time = 0
         self.result_list = []
@@ -33,15 +35,15 @@ class Logger:
         
     def end(self, train_result, val_result, test_result):
         self.end_time = time.time()
-        self.time_list.append(self.end_time - self.start_time)
         self.report_result(train_result, val_result, test_result)
         self.cur_dict()["time used"] = self.report_time(mode="recent")
 
     def report_time(self, mode="recent"):
         if mode == "recent":
-            elapsed = self.time_list[-1]
-        elif mode == "total":
-            elapsed = sum(self.time_list[-1])
+            elapsed = int(self.end_time - self.start_time)
+            self.total_time += elapsed
+        else:
+            elapsed = int(self.total_time)
         m, s = divmod(elapsed, 60)
         h, m = divmod(m, 60)
         hms = f"{h:d}:{m:d}:{s:d}"
@@ -50,14 +52,16 @@ class Logger:
 
     def report_train_score(self, epoch):
         print('epoch {:d}/{:d}, training {} {:.4f}'.format(
-        epoch + 1, self.config.num_epochs, self.config.metric, self.cur_dict["train_score"][-1]))
+        epoch + 1, self.config.num_epochs, self.config.metric, self.cur_dict()["train_score"][-1]))
 
     def report_value_score(self, epoch, best_score):
         print('epoch {:d}/{:d}, validation {:.4f}, best validation {:.4f}'.format(
                 epoch + 1, self.config.num_epochs,
-                self.cur_dict["val_score"][-1]) + ' validation result:', self.cur_dict["val_result"][-1])
+                self.cur_dict()["val_score"][-1], best_score))
 
     def report_result(self, train_result, val_result, test_result):
+        plt.figure()
+        self.result_pd.loc[self.time_id] = train_result + ["train"] + val_result + ["val"] + test_result + ["test"]
         print(
             '********************************{}, {}, {}_times_result*******************************'.format(
                 self.config.project_name, self.config.experiment_name,
@@ -67,3 +71,24 @@ class Logger:
         print("train_result:", train_result)
         print("val_result:", val_result)
         print("test_result:", test_result)
+        self.plot_score()
+        self.plot_loss()
+    
+    def plot_score(self):
+        plt.figure()
+        plt.xlabel("epoch")
+        plt.ylabel(f"{self.config.metric}")
+        plt.plot(range(len(self.cur_dict()["train_score"])), self.cur_dict()["train_score"], label="train")
+        plt.plot(range(len(self.cur_dict()["val_score"])), self.cur_dict()["val_score"], label="val")
+        plt.legend()
+        plt.savefig(self.config.log_path + f"/train_val_score_{self.time_id}.png")
+
+    def plot_loss(self):
+        plt.figure()
+        plt.xlabel("epoch")
+        plt.ylabel("loss")
+        plt.plot(range(len(self.cur_dict()["loss"])), self.cur_dict()["loss"])
+        plt.savefig(self.config.log_path + f"/loss_{self.time_id}.png")
+
+    def log(self):
+        self.result_pd.to_csv(self.config.log_path + "/result.csv")

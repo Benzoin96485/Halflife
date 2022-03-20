@@ -44,23 +44,23 @@ def main():
                         optimizer=optimizer,
                         metric=config.metric,
                         logger=logger)
-            val_result = eval_epoch(config.device, model, val_loader)
+            val_result = eval_epoch(config.device, model, val_loader, config.metric)
             logger.cur_dict()["val_mid_result"].append(val_result)
             val_score = np.mean(val_result)
             logger.cur_dict()["val_score"].append(val_score)
             early_stop = stopper.step(val_score, model)
-            logger.report_value_score(stopper.best_score)
+            logger.report_value_score(epoch, stopper.best_score)
             if early_stop:
                 break
 
         stopper.load_checkpoint(model)
-        test_result = eval_epoch(config.device, model, test_loader)
-        train_result = eval_epoch(config.device, model, train_loader)
-        val_result = eval_epoch(config.device, model, val_loader)
+        test_result = eval_epoch(config.device, model, test_loader, config.metric)
+        train_result = eval_epoch(config.device, model, train_loader, config.metric)
+        val_result = eval_epoch(config.device, model, val_loader, config.metric)
 
-        logger.end(test_result, train_result, val_result)
+        logger.end(train_result, val_result, test_result)
         torch.cuda.empty_cache()
-        
+    logger.log()
 
 if __name__ == "__main__":
     main()

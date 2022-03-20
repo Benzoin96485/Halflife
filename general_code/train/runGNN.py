@@ -31,7 +31,8 @@ def train_epoch(device, epoch, model, num_epochs, data_loader,
         atom_feats = bg.ndata.pop("atom").to(device)
         bond_feats = bg.edata.pop("bond").to(device)
         logits = model(bg, atom_feats, bond_feats, norm=None)[0]
-        labels = labels.type_as(logits)
+        labels = labels.type_as(logits).reshape(logits.shape)
+        mask = mask.reshape(logits.shape)
         if not task_weight:
             loss = (loss_criterion(logits, labels) * (mask != 0).float()).mean()
         else:
@@ -42,13 +43,13 @@ def train_epoch(device, epoch, model, num_epochs, data_loader,
         # print('epoch {:d}/{:d}, batch {:d}/{:d}, loss {:.4f}'.format(
         #     epoch + 1, args['num_epochs'], batch_id + 1, len(data_loader), loss.item()))
         train_meter.update(logits, labels, mask)
-        del bg, mask, labels, atom_feats, bond_feats, loss, logits
+        del bg, mask, labels, atom_feats, bond_feats, logits
         torch.cuda.empty_cache()
 
-    logger.cur_dict()["loss"].append(loss)
+    logger.cur_dict()["loss"].append(loss.detach().cpu().numpy())
     train_score = np.mean(train_meter.compute_metric(metric))
     logger.cur_dict()["train_score"].append(train_score)
-    logger.log_train_score(epoch)
+    logger.report_train_score(epoch)
 
 def eval_epoch(device, model, data_loader, metric):
     model.eval()
@@ -62,7 +63,8 @@ def eval_epoch(device, model, data_loader, metric):
             atom_feats = bg.ndata.pop("atom").to(device)
             bond_feats = bg.edata.pop("bond").to(device)
             logits = model(bg, atom_feats, bond_feats, norm=None)[0]
-            labels = labels.type_as(logits)
+            labels = labels.type_as(logits).reshape(logits.shape)
+            mask = mask.reshape(logits.shape)
             eval_meter.update(logits, labels, mask)
             del smiles, bg, mask, labels, atom_feats, bond_feats, logits
             torch.cuda.empty_cache()
