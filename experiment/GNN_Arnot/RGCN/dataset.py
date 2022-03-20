@@ -1,5 +1,5 @@
 from sklearn.utils import shuffle
-from general_code.data.buildDataset import csv2gdata, split_data
+from general_code.data.buildDataset import collate_molgraphs, csv2gdata, split_data, collate_molgraphs
 from torch.utils.data import DataLoader
 
 def make_dataset(config):
@@ -9,7 +9,8 @@ def make_dataset(config):
         node_featurizer=config.atom_featurizer, 
         edge_featurizer=config.bond_featurizer, 
         smi_col=config.smi_col, 
-        cache_path=config.cache_path
+        cache_path=config.cache_path,
+        task_names=config.task_names
     )
 
 def make_loaders(dataset, config, seed):
@@ -23,16 +24,19 @@ def make_loaders(dataset, config, seed):
     train_loader = DataLoader(
         dataset=train_set, 
         batch_size=batch_size, 
-        shuffle=True
+        shuffle=True,
+        collate_fn=collate_molgraphs
     )
     val_loader = DataLoader(
         dataset=val_set, 
         batch_size=batch_size, 
-        shuffle=True
+        shuffle=True,
+        collate_fn=collate_molgraphs
     )
     test_loader = DataLoader(
         dataset=test_set, 
         batch_size=batch_size, 
-        shuffle=True
+        shuffle=True,
+        collate_fn=collate_molgraphs
     )
     return train_loader, val_loader, test_loader

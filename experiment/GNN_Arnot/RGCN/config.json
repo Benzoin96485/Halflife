@@ -5,7 +5,7 @@
     "data_config": {
         "data_path": "data/basis/Arnot2016.csv",
         "smi_col": "smiles",
-        "label_name_list": ["lgHL"],
+        "task_names": ["lgHL"],
         "split_method": "random",
         "split_ratio": [8, 1, 1]
     },
@@ -19,10 +19,10 @@
 
     "net_config": {
         "gnn_hidden_nfeats": [64, 128],
-        "gnn_out_nfeats": [64, 128],
         "readout_type": "weight_and_sum",
         "rgcn_loop": true,
-        "rgcn_dropout": 0.2
+        "rgcn_dropout": 0.2,
+        "fcn_hidden_nfeats": [128, 128]
     },
 
     "run_config": {

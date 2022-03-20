@@ -42,7 +42,7 @@ def output_layer(in_feats, out_feats):
 
 
 class FCN(nn.Module):
-    def __init__(self, n_tasks, fcn_in_feats, fcn_hidden_feats, fcn_out_feats=1, fcn_dropout=0.2, **kwargs):
+    def __init__(self, n_tasks, fcn_in_nfeats, fcn_hidden_nfeats, fcn_out_nfeats=1, fcn_dropout=0.2, **kwargs):
         """
         A fully connected network at GNN downstream.
         :param n_tasks: int: number of tasks
@@ -51,7 +51,7 @@ class FCN(nn.Module):
         """
         super(FCN, self).__init__()
         self.n_tasks = n_tasks
-        self.n_fc_feats = [fcn_in_feats] + fcn_hidden_feats
+        self.n_fc_feats = [fcn_in_nfeats] + fcn_hidden_nfeats
         self.fc_layers_list = nn.ModuleList()
         for i in range(len(self.n_fc_feats) - 1):
             self.fc_layers_list.append(
@@ -62,7 +62,7 @@ class FCN(nn.Module):
                 )
             )
         self.output_layer = nn.ModuleList(
-            [output_layer(fcn_hidden_feats[-1], fcn_out_feats) for _ in range(self.n_tasks)])
+            [output_layer(fcn_hidden_nfeats[-1], fcn_out_nfeats) for _ in range(self.n_tasks)])
 
     def forward(self, mol_feats_list):
         """
@@ -125,13 +125,13 @@ class WeightAndSum(nn.Module):
                 shared_feats_sum = sum_nodes(bg, 'h', 'w')
             return shared_feats_sum, weight
 
-    def atom_weight(self, in_feats):
+    def atom_weight(self, in_nfeats):
         """
         :param in_feats: the input atom feature size
         :return: attention weight of atom
         """
         return nn.Sequential(
-            nn.Linear(in_feats, 1),
+            nn.Linear(in_nfeats, 1),
             nn.Sigmoid()
         )
 
@@ -178,6 +178,7 @@ class GNNLayer(nn.Module):
         # if self.model_type == "MPNN0":
             # if etype.dtype != torch.float32:
                 # etype = etype.type(torch.float32)
+        print(bg)
         new_feats = self.graph_conv_layer(bg, node_feats, etype)
         if self.residual:
             res_feats = self.activation(self.res_connection(node_feats))

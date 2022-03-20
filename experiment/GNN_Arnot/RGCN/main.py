@@ -1,13 +1,18 @@
 from general_code.utils.argParse import parseArgs
 from general_code.utils.log import Logger
-from dataset import make_dataset, make_loaders
-from general_code.model.BaseGNN import MPNN
-from torch.optim import Adam
-from config import make_config
-from dgllife.utils import EarlyStopping
 from general_code.train.runGNN import train_epoch, eval_epoch
+from general_code.model.BaseGNN import MPNN
+
+from dataset import make_dataset, make_loaders
+from config import make_config
+from model import make_model
+
 import numpy as np
 import torch
+from torch.optim import Adam
+from dgllife.utils import EarlyStopping
+
+
 
 def main():
     config = make_config(parseArgs().config)
@@ -21,10 +26,9 @@ def main():
                 train_loader, val_loader, test_loader = make_loaders(dataset, config, seed_this_time)
         else:
             train_loader, val_loader, test_loader = make_loaders(dataset, config, seed_this_time)
-        model = MPNN(**config.net_config).to(config.device)
+        model = make_model(config)
         optimizer = Adam(model.parameters(), lr=config.lr, weight_decay=config.weight_decay)
         stopper = EarlyStopping(
-            mode=config.early_stop_mode,
             patience=config.patience,
             filename=config.checkpoint_path,
             metric=config.metric

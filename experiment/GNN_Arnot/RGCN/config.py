@@ -13,6 +13,6 @@ def make_config(config_path="config.json"):
     config.make_loss_criterion(config.loss_name)
     config.checkpoint_path = make_path("experiment", "log", __file__, "checkpoint.pth")
     config.cache_path = make_path("experiment", "log", __file__, "graph.bin")
-    config.net_config["gnn_in_nfeats"] = config.atom_featurizer.feat_size()
-    config.net_config["num_rels"]= config.bond_featurizer.feat_size()
+    config.gnn_in_nfeats = config.atom_featurizer.feat_size()
+    config.num_rels = config.bond_featurizer.feat_size()
     return config
