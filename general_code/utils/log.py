@@ -4,6 +4,7 @@
 # Imports
 # std libs
 import time
+import os
 
 # 3rd party libs
 import pandas as pd
@@ -81,14 +82,18 @@ class Logger:
         plt.plot(range(len(self.cur_dict()["train_score"])), self.cur_dict()["train_score"], label="train")
         plt.plot(range(len(self.cur_dict()["val_score"])), self.cur_dict()["val_score"], label="val")
         plt.legend()
-        plt.savefig(self.config.log_path + f"/train_val_score_{self.time_id}.png")
+        if not os.path.exists(self.config.log_path + "/train_val_score/"):
+            os.makedirs(self.config.log_path + "/train_val_score/")
+        plt.savefig(self.config.log_path + f"/train_val_score/train_val_score_{self.time_id}.png")
 
     def plot_loss(self):
         plt.figure()
         plt.xlabel("epoch")
         plt.ylabel("loss")
         plt.plot(range(len(self.cur_dict()["loss"])), self.cur_dict()["loss"])
-        plt.savefig(self.config.log_path + f"/loss_{self.time_id}.png")
+        if not os.path.exists(self.config.log_path + "/loss/"):
+            os.makedirs(self.config.log_path + "/loss/")
+        plt.savefig(self.config.log_path + f"/loss/loss_{self.time_id}.png")
 
     def log(self):
         self.result_pd.to_csv(self.config.log_path + "/result.csv")

@@ -6,3 +6,7 @@ data/
 *.bin
 run.sh
 __pycache__
+test*
+checkpoint*
+error
+out

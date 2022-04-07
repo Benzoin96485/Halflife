@@ -1,13 +1,23 @@
-from sklearn.utils import shuffle
-from general_code.data.buildDataset import collate_molgraphs, csv2gdata, split_data, collate_molgraphs
+from general_code.data.tdcDataset import make_multitask_data
+from general_code.data.buildDataset import collate_molgraphs, df2gdata, split_data, collate_molgraphs
 from torch.utils.data import DataLoader
+import pandas as pd
 
 def make_dataset(config):
-    return csv2gdata(
-        data_path=config.data_path, 
-        graph_type=config.graph_type, 
-        node_featurizer=config.atom_featurizer, 
-        edge_featurizer=config.bond_featurizer, 
+    if config.dump_dataset == True:
+        df = make_multitask_data(
+            task_name_list=config.task_names, 
+            check_name=config.check_names, 
+            atom_allow_type=config.atom_allow_type
+        )
+        df.to_csv(config.dump_dataset)
+    else:
+        df = pd.read_csv(config.dump_dataset)
+    return df2gdata(
+        df=df,
+        graph_type=config.graph_type,
+        node_featurizer=config.atom_featurizer,
+        edge_featurizer=config.bond_featurizer,
         smi_col=config.smi_col, 
         cache_path=config.cache_path,
         task_names=config.task_names

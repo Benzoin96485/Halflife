@@ -27,7 +27,7 @@
 
     "run_config": {
         "seed_init": 114514,
-        "eval_times": 1,
+        "eval_times": 10,
         "resplit_each_time": true,
         "batch_size": 128,
         "gpu": true,
@@ -37,6 +37,6 @@
         "loss_name": "mse",
         "earlystop_mode": "higher",
         "num_epochs": 1000,
-        "patience": 10
+        "patience": 100
     }
 }
