@@ -3,8 +3,8 @@ from general_code.utils.log import Logger
 from general_code.train.runGNN import train_epoch, eval_epoch
 from general_code.model.BaseGNN import MPNN
 
-from dataset import make_dataset, make_loaders
-from config import make_config
+from dataset_ import make_dataset, make_loaders
+from config_ import make_config
 from model import make_model
 
 import numpy as np
@@ -15,7 +15,7 @@ from dgllife.utils import EarlyStopping
 
 
 def main():
-    config = make_config(parseArgs().config)
+    config = make_config(parseArgs().config, file_path=__file__)
     logger = Logger(config)
     for time_id in range(config.eval_times):
         seed_this_time = time_id + config.seed_init

@@ -15,7 +15,7 @@ from dgllife.utils import EarlyStopping
 
 
 def main():
-    config = make_config(parseArgs().config)
+    config = make_config(parseArgs().config, file_path=__file__)
     logger = Logger(config)
     for time_id in range(config.eval_times):
         seed_this_time = time_id + config.seed_init
