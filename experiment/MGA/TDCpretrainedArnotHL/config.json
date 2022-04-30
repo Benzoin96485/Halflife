@@ -1,6 +1,6 @@
 {
-    "project_name": "GNN_Arnot",
-    "experiment_name": "RGCN",
+    "project_name": "MGA",
+    "experiment_name": "TDCpretrainedArnotHL",
     
     "data_config": {
         "data_path": "data/basis/Arnot2016.csv",
@@ -26,6 +26,7 @@
     },
 
     "run_config": {
+        "pretrain_path": "log/MGA/TDCpretrain/checkpoint.pth",
         "seed_init": 114514,
         "eval_times": 10,
         "resplit_each_time": true,

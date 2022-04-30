@@ -10,3 +10,4 @@ test*
 checkpoint*
 error
 out
+log
