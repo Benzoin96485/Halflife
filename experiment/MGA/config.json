@@ -1,6 +1,6 @@
 {
     "project_name": "MGA",
-    "experiment_name": "TDCpretrainedArnotHL",
+    "experiment_name": "TDCpretrainedObachHL",
     
     "data_config": {
         "data_path": "data/basis/Obach2018.csv",
@@ -33,7 +33,6 @@
         "batch_size": 128,
         "gpu": true,
         "lr": 1e-3,
-        "pretrain_lr": 1e-4,
         "weight_decay": 1e-5,
         "metric": "r2",
         "loss_name": "mse",

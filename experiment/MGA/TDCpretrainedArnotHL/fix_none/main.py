@@ -16,8 +16,7 @@ from dgllife.utils import EarlyStopping
 
 
 def main():
-    config = make_config(parseArgs().config)
-    config.log_path = make_path("experiment", "log", __file__, "")
+    config = make_config(parseArgs().config, file_path=__file__)
     logger = Logger(config)
     for time_id in range(config.eval_times):
         seed_this_time = time_id + config.seed_init
