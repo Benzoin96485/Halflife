@@ -1,8 +1,8 @@
-log/
+log
 from_github/
 old*/
 result/
-data/
+/data/
 *.bin
 run.sh
 __pycache__
@@ -10,4 +10,3 @@ test*
 checkpoint*
 error
 out
-log
