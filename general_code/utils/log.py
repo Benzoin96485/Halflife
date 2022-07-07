@@ -96,4 +96,19 @@ class Logger:
         plt.savefig(self.config.log_path + f"/loss/loss_{self.time_id}.png")
 
     def log(self):
+        n = len(self.config.task_names)
+        with open(self.config.log_path + "/result.txt") as f:
+            f.write("train:")
+            for task in self.result_pd.columns[:n]:
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
+                f.write(f"\t{task} std: {self.result_pd[task].std()}")
+            f.write("val:")
+            for task in self.result_pd.columns[n+1:2*n+1]:
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
+                f.write(f"\t{task} std: {self.result_pd[task].std()}")
+            f.write("test:")
+            for task in self.result_pd.columns[2*n+2:3*n+2]:
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
+                f.write(f"\t{task} std: {self.result_pd[task].std()}")
+
         self.result_pd.to_csv(self.config.log_path + "/result.csv")

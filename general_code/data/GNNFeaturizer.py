@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-A specific featurizer for edges in graph of RGCN
+A specific featurizer for GNN like model
 """
 
 # Imports

@@ -205,7 +205,7 @@ class MPNN(nn.Module):
         self.build_readout(**kwargs)
         self.fcn = FCN(**kwargs)
 
-    def forward(self, bg, node_feats, edge_feats, **kwargs):
+    def forward(self, bg, node_feats, edge_feats, extra_embedding=None, **kwargs):
         """
         :param bg: Batched DGL graph, processing multiple molecules in parallel
         :param node_feats: FloatTensor of shape (N, M1)
@@ -225,6 +225,10 @@ class MPNN(nn.Module):
                 node_feats = gnn(bg, node_feats, edge_feats)
 
         mol_embedding, weight = self.readout(bg, node_feats)
+        if extra_embedding != None:
+            for i in range(len(mol_embedding)):
+                mol_embedding[i] = torch.cat((mol_embedding[i], extra_embedding), axis=1)
+                # print(mol_embedding[i].shape)
         prediction_all = self.fcn(mol_embedding)
         return prediction_all, mol_embedding, weight
 

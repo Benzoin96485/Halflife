@@ -14,6 +14,7 @@ from dgllife.utils import *
 import dgl
 import torch
 import pandas as pd
+from sklearn.utils import shuffle
 
 # my modules
 
@@ -42,20 +43,47 @@ def df2gdata(
 
 
 def split_data(dataset, method, ratio, seed):
+    frac_train, frac_val, frac_test = make_ratio_frac(ratio)
     if method == "random":
         splitter = RandomSplitter()
-    frac_train, frac_val, frac_test = make_ratio_frac(ratio)
-    return splitter.train_val_test_split(
-        dataset, 
-        frac_train=frac_train, frac_val=frac_val, frac_test=frac_test,
-        random_state=seed
-    )
+        return splitter.train_val_test_split(
+            dataset, 
+            frac_train=frac_train, frac_val=frac_val, frac_test=frac_test,
+            random_state=seed
+        )
+    elif method == "smiles":
+        datalist = list(dataset)
+        d = dict()
+        for data in datalist:
+            if data[0] not in d:
+                d[data[0]] = [data]
+            else:
+                d[data[0]].append(data)
+        l = len(dataset)
+        count = sorted(list(d.values()), key=lambda x: len(x), reverse=True)
+        l_cur = 0
+        train_set, val_set, test_set = [], [], []
+        for i in range(len(count)):
+            if l_cur < l * frac_train:
+                train_set.extend(count[i])
+            elif l_cur <= l * (frac_train + frac_val):
+                val_set.extend(count[i])
+            else:
+                test_set.extend(count[i])
+            l_cur += len(count[i])
+        return train_set, val_set, test_set
+        
 
 def collate_molgraphs(data):
-    smiles, graphs, labels, mask = map(list, zip(*data))
+    if len(data[0]) > 4:
+        smiles, graphs, labels, mask, extra = map(list, zip(*data))
+        extra = torch.Tensor(extra)
+    else:
+        smiles, graphs, labels, mask = map(list, zip(*data))
+        extra = None
     bg = dgl.batch(graphs)
     bg.set_n_initializer(dgl.init.zero_initializer)
     bg.set_e_initializer(dgl.init.zero_initializer)
     labels = torch.stack(labels, dim=0)
     mask = torch.stack(mask, dim=0)
-    return smiles, bg, labels, mask
+    return smiles, bg, labels, mask, extra
