@@ -7,7 +7,7 @@ def make_config(config_path="config.json", file_path=__file__):
     config.device = "cpu"
     if config.gpu:
         if torch.cuda.is_available():
-            config.device = "cuda:3"
+            config.device = "cuda:0"
     config.make_atom_featurizer(config.atom_feat_name)
     config.make_bond_featurizer(config.bond_feat_name, config.bond_feat_type)
     config.make_loss_criterion(config.loss_name)

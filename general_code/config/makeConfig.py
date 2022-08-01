@@ -13,7 +13,7 @@ from dgllife.utils import *
 from torch.nn import MSELoss
 
 # my modules
-from general_code.data.featurizer import RGCNBondFeaturizer
+from general_code.data.GNNFeaturizer import RGCNBondFeaturizer
 
 
 class Config():

@@ -3,6 +3,7 @@
 
 # Imports
 # std libs
+from functools import reduce
 import time
 import os
 
@@ -17,7 +18,18 @@ from general_code.utils.env import set_random_seed
 class Logger:
     def __init__(self, config):
         self.config = config
-        self.result_pd = pd.DataFrame(columns=(config.task_names + ['group']) * 3)
+        if hasattr(config, "extra_metrics"):
+            self.extra_metric = True
+            metrics = [config.metric] + config.extra_metrics
+        else:
+            self.extra_metric = False
+            metrics = [config.metric]
+        task_cols = []
+        for group in ["train", "val", "test"]:
+            for metric in metrics:
+                for task_name in config.task_names:
+                    task_cols.append(f"{group}_{task_name}_{metric}")
+        self.result_pd = pd.DataFrame(columns=task_cols)
         self.total_time = 0
         self.start_time = 0
         self.end_time = 0
@@ -62,15 +74,17 @@ class Logger:
 
     def report_result(self, train_result, val_result, test_result):
         plt.figure()
-        self.result_pd.loc[self.time_id] = train_result + ["train"] + val_result + ["val"] + test_result + ["test"]
+        row = reduce(lambda x, y: x+y, train_result) + reduce(lambda x, y: x+y, val_result) + reduce(lambda x, y: x+y, test_result)
+        print(row)
+        self.result_pd.loc[self.time_id] = row
         print(
             '********************************{}, {}, {}_times_result*******************************'.format(
                 self.config.project_name, self.config.experiment_name,
                 self.time_id + 1
             )
         )
-        print("train_result:", train_result)
-        print("val_result:", val_result)
+        # print("train_result:", train_result)
+        # print("val_result:", val_result)
         print("test_result:", test_result)
         self.plot_score()
         self.plot_loss()
@@ -97,18 +111,24 @@ class Logger:
 
     def log(self):
         n = len(self.config.task_names)
-        with open(self.config.log_path + "/result.txt") as f:
-            f.write("train:")
+        if self.extra_metric:
+            n *= (len(self.config.extra_metrics) + 1)
+        with open(os.path.join(self.config.log_path, "result.txt"), mode="w+") as f:
+            f.write("train:\n")
             for task in self.result_pd.columns[:n]:
-                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
-                f.write(f"\t{task} std: {self.result_pd[task].std()}")
-            f.write("val:")
-            for task in self.result_pd.columns[n+1:2*n+1]:
-                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
-                f.write(f"\t{task} std: {self.result_pd[task].std()}")
-            f.write("test:")
-            for task in self.result_pd.columns[2*n+2:3*n+2]:
-                f.write(f"\t{task} mean: {self.result_pd[task].mean()}")
-                f.write(f"\t{task} std: {self.result_pd[task].std()}")
+                print(self.result_pd[task])
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}\n")
+                if self.config.eval_times > 1:
+                    f.write(f"\t{task} std: {self.result_pd[task].std()}\n")
+            f.write("val:\n")
+            for task in self.result_pd.columns[n:2*n]:
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}\n")
+                if self.config.eval_times > 1:
+                    f.write(f"\t{task} std: {self.result_pd[task].std()}\n")
+            f.write("test:\n")
+            for task in self.result_pd.columns[2*n:3*n]:
+                f.write(f"\t{task} mean: {self.result_pd[task].mean()}\n")
+                if self.config.eval_times > 1:
+                    f.write(f"\t{task} std: {self.result_pd[task].std()}\n")
 
-        self.result_pd.to_csv(self.config.log_path + "/result.csv")
+        self.result_pd.to_csv(os.path.join(self.config.log_path, "result.csv"))

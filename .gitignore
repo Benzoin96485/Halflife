@@ -2,6 +2,7 @@ log
 from_github/
 old*/
 result/
+experiment/
 /data/
 *.bin
 run.sh

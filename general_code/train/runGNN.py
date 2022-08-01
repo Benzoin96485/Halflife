@@ -56,7 +56,7 @@ def train_epoch(device, epoch, model, num_epochs, data_loader,
     logger.cur_dict()["train_score"].append(train_score)
     logger.report_train_score(epoch)
 
-def eval_epoch(device, model, data_loader, metric):
+def eval_epoch(device, model, data_loader, metric, extra_metrics=[]):
     model.eval()
     eval_meter = Meter()
     with torch.no_grad():
@@ -75,5 +75,4 @@ def eval_epoch(device, model, data_loader, metric):
             eval_meter.update(logits, labels, mask)
             del smiles, bg, mask, labels, atom_feats, bond_feats, logits
             torch.cuda.empty_cache()
-
-        return eval_meter.compute_metric(metric)
+        return [eval_meter.compute_metric(metric)] + [eval_meter.compute_metric(extra_metric) for extra_metric in extra_metrics]
