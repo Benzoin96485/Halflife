@@ -8,7 +8,7 @@
 # 3rd party libs
 import torch
 from torch import nn
-from dgl.readout import sum_nodes
+from dgl.readout import sum_nodes, mean_nodes
 from dgl.nn.pytorch.conv import GatedGraphConv, RelGraphConv, NNConv
 import torch.nn.functional as F
 
@@ -241,3 +241,5 @@ class MPNN(nn.Module):
     def build_readout(self, readout_type="weight_and_sum", **kwargs):
         if readout_type == "weight_and_sum":
             self.readout = WeightAndSum(**kwargs)
+        elif readout_type == "average":
+            self.readout = mean_nodes
