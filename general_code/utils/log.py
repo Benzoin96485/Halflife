@@ -4,6 +4,7 @@
 # Imports
 # std libs
 from functools import reduce
+from collections import Iterable
 import time
 import os
 
@@ -12,15 +13,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # my modules
-from general_code.utils.env import set_random_seed 
-
+from general_code.utils.makeConfig import Config
 
 class Logger:
-    def __init__(self, config):
+    def __init__(self, config: Config):
         self.config = config
-        if hasattr(config, "extra_metrics"):
+        if hasattr(config, "extra_metrics") and config.extra_metrics:
             self.extra_metric = True
-            metrics = [config.metric] + config.extra_metrics
+            metrics = [config.metric] + (config.extra_metrics if isinstance(config.extra_metrics, Iterable) else [config.extra_metrics])
         else:
             self.extra_metric = False
             metrics = [config.metric]
@@ -43,7 +43,7 @@ class Logger:
         self.time_id = time_id
         self.result_list.append(dict())
         self.cur_dict().update({"loss": [], "train_score": [], "val_score": [], "val_mid_result": [], "seed": seed, "time_id": time_id})
-        set_random_seed(seed)
+        # self.config.set_random_seed(seed)
         self.start_time = time.time()
         
     def end(self, train_result, val_result, test_result):
@@ -67,10 +67,20 @@ class Logger:
         print('epoch {:d}/{:d}, training {} {:.4f}'.format(
         epoch + 1, self.config.num_epochs, self.config.metric, self.cur_dict()["train_score"][-1]))
 
-    def report_value_score(self, epoch, best_score):
-        print('epoch {:d}/{:d}, validation {:.4f}, best validation {:.4f}'.format(
-                epoch + 1, self.config.num_epochs,
-                self.cur_dict()["val_score"][-1], best_score))
+    def report_value_score(self, epoch, best_score=None, warmup=False):
+        if warmup:
+            print('epoch {:d}/{:d} (warmup), validation {:.4f}'.format(
+                epoch + 1, 
+                self.config.num_epochs,
+                self.cur_dict()["val_score"][-1]
+            ))
+        else:
+            print('epoch {:d}/{:d}, validation {:.4f}, best validation {:.4f}'.format(
+            epoch + 1, 
+            self.config.num_epochs,
+            self.cur_dict()["val_score"][-1], 
+            best_score
+        ))
 
     def report_result(self, train_result, val_result, test_result):
         plt.figure()

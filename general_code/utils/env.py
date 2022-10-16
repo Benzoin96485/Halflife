@@ -9,18 +9,23 @@ import os
 # 3rd party libs
 import torch
 import numpy as np
+import dgl
 
 # my modules
 
 
-def set_random_seed(seed: int=10) -> None:
+def set_random_seed(seed):
+    seed = int(seed)
+    os.environ["PYTHONSEED"] = str(seed)
+    os.environ["PYTHONHASHSEED"] = str(seed)
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
+    dgl.random.seed(seed)
 
 
 def make_path(old_module: str, new_module: str, file_path: str, add_path: str) -> str:
@@ -33,3 +38,4 @@ def make_path(old_module: str, new_module: str, file_path: str, add_path: str) -
         print(f"make new directory: {new_path}")
     return new_path + "/" + add_path
 
+set_random_seed(0)

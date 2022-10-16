@@ -1,0 +1,129 @@
+nohup: ignoring input
+Using backend: pytorch
+device: cuda: 1
+Processing dgl graphs from scratch...
+Processing molecule 1000/1059
+Processing dgl graphs from scratch...
+Processing dgl graphs from scratch...
+For metric r2, the higher the better
+epoch 1/1000, training r2 -1.1379
+Calibration at lambda=0 is 0.06717171717171716
+epoch 1/1000, validation -1.0827, best validation -1.0827
+epoch 2/1000, training r2 -1.2634
+Calibration at lambda=0 is 0.10858585858585859
+EarlyStopping counter: 1 out of 100
+epoch 2/1000, validation -1.4880, best validation -1.0827
+epoch 3/1000, training r2 -1.7780
+Calibration at lambda=0 is 0.14545454545454545
+epoch 3/1000, validation -0.7484, best validation -0.7484
+epoch 4/1000, training r2 -2.1112
+Calibration at lambda=0 is 0.15656565656565657
+EarlyStopping counter: 1 out of 100
+epoch 4/1000, validation -0.7999, best validation -0.7484
+epoch 5/1000, training r2 -2.3422
+Calibration at lambda=0 is 0.1797979797979798
+EarlyStopping counter: 2 out of 100
+epoch 5/1000, validation -0.8529, best validation -0.7484
+epoch 6/1000, training r2 -2.1917
+Calibration at lambda=0 is 0.17222222222222222
+EarlyStopping counter: 3 out of 100
+epoch 6/1000, validation -0.9332, best validation -0.7484
+epoch 7/1000, training r2 -2.4630
+Calibration at lambda=0 is 0.1904040404040404
+EarlyStopping counter: 4 out of 100
+epoch 7/1000, validation -1.2232, best validation -0.7484
+epoch 8/1000, training r2 -1.7035
+Calibration at lambda=0 is 0.17878787878787877
+epoch 8/1000, validation -0.7068, best validation -0.7068
+epoch 9/1000, training r2 -1.9525
+Calibration at lambda=0 is 0.1878787878787879
+EarlyStopping counter: 1 out of 100
+epoch 9/1000, validation -0.7604, best validation -0.7068
+epoch 10/1000, training r2 -1.2225
+Calibration at lambda=0 is 0.19393939393939394
+epoch 10/1000, validation -0.4116, best validation -0.4116
+epoch 11/1000, training r2 -1.1788
+Calibration at lambda=0 is 0.17272727272727273
+epoch 11/1000, validation -0.2771, best validation -0.2771
+epoch 12/1000, training r2 -0.9453
+Calibration at lambda=0 is 0.202020202020202
+epoch 12/1000, validation -0.1065, best validation -0.1065
+epoch 13/1000, training r2 -0.4085
+Calibration at lambda=0 is 0.2025252525252525
+epoch 13/1000, validation 0.1313, best validation 0.1313
+epoch 14/1000, training r2 -0.4132
+Calibration at lambda=0 is 0.19090909090909094
+EarlyStopping counter: 1 out of 100
+epoch 14/1000, validation 0.1184, best validation 0.1313
+epoch 15/1000, training r2 -0.4028
+Calibration at lambda=0 is 0.20606060606060608
+epoch 15/1000, validation 0.1907, best validation 0.1907
+epoch 16/1000, training r2 -0.1033
+Calibration at lambda=0 is 0.18888888888888888
+EarlyStopping counter: 1 out of 100
+epoch 16/1000, validation 0.1527, best validation 0.1907
+epoch 17/1000, training r2 -0.0561
+Calibration at lambda=0 is 0.20202020202020204
+EarlyStopping counter: 2 out of 100
+epoch 17/1000, validation 0.1376, best validation 0.1907
+epoch 18/1000, training r2 0.1732
+Calibration at lambda=0 is 0.2085858585858586
+epoch 18/1000, validation 0.1976, best validation 0.1976
+epoch 19/1000, training r2 0.1792
+Calibration at lambda=0 is 0.19696969696969696
+EarlyStopping counter: 1 out of 100
+epoch 19/1000, validation 0.1337, best validation 0.1976
+epoch 20/1000, training r2 0.2128
+Calibration at lambda=0 is 0.2085858585858586
+epoch 20/1000, validation 0.2789, best validation 0.2789
+epoch 21/1000, training r2 0.2687
+Calibration at lambda=0 is 0.20656565656565656
+epoch 21/1000, validation 0.2905, best validation 0.2905
+epoch 22/1000, training r2 0.3685
+Calibration at lambda=0 is 0.20050505050505055
+EarlyStopping counter: 1 out of 100
+epoch 22/1000, validation 0.2499, best validation 0.2905
+epoch 23/1000, training r2 0.2982
+Calibration at lambda=0 is 0.20151515151515154
+EarlyStopping counter: 2 out of 100
+epoch 23/1000, validation 0.2705, best validation 0.2905
+epoch 24/1000, training r2 0.3390
+Calibration at lambda=0 is 0.22020202020202018
+epoch 24/1000, validation 0.3478, best validation 0.3478
+epoch 25/1000, training r2 0.4094
+Calibration at lambda=0 is 0.20404040404040408
+EarlyStopping counter: 1 out of 100
+epoch 25/1000, validation 0.2984, best validation 0.3478
+epoch 26/1000, training r2 0.4182
+Calibration at lambda=0 is 0.20454545454545456
+EarlyStopping counter: 2 out of 100
+epoch 26/1000, validation 0.2703, best validation 0.3478
+epoch 27/1000, training r2 0.4153
+Calibration at lambda=0 is 0.19595959595959594
+EarlyStopping counter: 3 out of 100
+epoch 27/1000, validation 0.2930, best validation 0.3478
+epoch 28/1000, training r2 0.4301
+Calibration at lambda=0 is 0.202020202020202
+EarlyStopping counter: 4 out of 100
+epoch 28/1000, validation 0.3050, best validation 0.3478
+epoch 29/1000, training r2 0.4462
+Calibration at lambda=0 is 0.21464646464646464
+EarlyStopping counter: 5 out of 100
+epoch 29/1000, validation 0.3230, best validation 0.3478
+epoch 30/1000, training r2 0.4252
+Calibration at lambda=0 is 0.21616161616161617
+epoch 30/1000, validation 0.3617, best validation 0.3617
+epoch 31/1000, training r2 0.4413
+Calibration at lambda=0 is 0.21414141414141416
+EarlyStopping counter: 1 out of 100
+epoch 31/1000, validation 0.3564, best validation 0.3617
+epoch 32/1000, training r2 0.4405
+Calibration at lambda=0 is 0.19494949494949498
+EarlyStopping counter: 2 out of 100
+epoch 32/1000, validation 0.2702, best validation 0.3617
+epoch 33/1000, training r2 0.4759
+Calibration at lambda=0 is 0.2050505050505051
+EarlyStopping counter: 3 out of 100
+epoch 33/1000, validation 0.3178, best validation 0.3617
+epoch 34/1000, training r2 0.4626
+Calibration at lambda=0 is 0.21060606060606057

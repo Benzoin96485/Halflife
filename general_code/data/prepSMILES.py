@@ -10,6 +10,8 @@ from functools import reduce
 
 # 3rd party libs
 from chembl_structure_pipeline import standardize_mol, get_parent_mol
+from rdkit.Chem.Scaffolds.MurckoScaffold import MurckoScaffoldSmiles, GetScaffoldForMol
+from rdkit.Chem import MolFromSmiles, DeleteSubstructs, MolToSmiles
 from rdkit import Chem
 import pandas as pd
 
@@ -52,14 +54,17 @@ def smi_cleaner(smi):
 def list_atom_types(df, smi_col):
     atom_dict = {}
     for smi in df[smi_col]:
-        mol = Chem.MolFromSmiles(smi)
-        atoms = mol.GetAtoms()
-        for atom in atoms:
-            symbol = atom.GetSymbol()
-            if symbol in atom_dict:
-                atom_dict[symbol] += 1
-            else:
-                atom_dict[symbol] = 1
+        try:
+            mol = Chem.MolFromSmiles(smi)
+            atoms = mol.GetAtoms()
+            for atom in atoms:
+                symbol = atom.GetSymbol()
+                if symbol in atom_dict:
+                    atom_dict[symbol] += 1
+                else:
+                    atom_dict[symbol] = 1
+        except:
+            print(smi)
     return atom_dict
 
 
@@ -73,3 +78,18 @@ def wash_df(df: pd.DataFrame, smi_col, check_name, **kwargs):
     S = SmiChecker()
     df["smi_check"] = df[smi_col].apply(lambda x: S.check(x, check_name, **kwargs))
     return df[df["smi_check"]][old_cols].copy()
+
+
+def scaffold_extract(smi):
+    return MurckoScaffoldSmiles(smiles=smi, includeChirality=False)
+
+
+def sidechain_extract(smi):
+    mol = MolFromSmiles(smi)
+    scaffold_patt = GetScaffoldForMol(mol)
+    sidechain_mol = DeleteSubstructs(mol, scaffold_patt)
+    return MolToSmiles(sidechain_mol)
+
+def scaffold_decomp_df(df: pd.DataFrame, smi_col="smiles"):
+    df[smi_col + "_scaffold"] = df[smi_col].apply(scaffold_extract)
+    df[smi_col + "_sidechain"] = df[smi_col].apply(sidechain_extract)

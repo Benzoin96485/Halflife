@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # Imports
+from general_code.utils.env import set_random_seed
+set_random_seed(0)
+
 # std libs
 # ...
 
@@ -13,6 +16,7 @@ from dgl.nn.pytorch.conv import GatedGraphConv, RelGraphConv, NNConv
 import torch.nn.functional as F
 
 # my modules
+# ...
 
 
 def fc_layer(dropout, in_feats, out_feats):
@@ -82,6 +86,22 @@ class FCN(nn.Module):
             else:
                 prediction_all = torch.cat([prediction_all, predict], dim=1)
         return prediction_all
+
+
+class Average(nn.Module):
+    def __init__(self, gnn_out_nfeats, n_tasks=1, **kwargs):
+        super(Average, self).__init__()
+        self.in_nfeats = gnn_out_nfeats
+        self.n_tasks = n_tasks
+
+    def forward(self, bg, feats):
+        feat_list, atom_list = [], []
+        for i in range(self.n_tasks):
+            with bg.local_scope():  # 在 local_scope 上下文中对图做修改，离开时图的特征不会被改变
+                bg.ndata['h'] = feats  # 存入特征
+                specific_feats_sum = mean_nodes(bg, 'h')  # 以 w 为权对所有节点的 h 求和
+            feat_list.append(specific_feats_sum)
+        return feat_list, atom_list
 
 
 class WeightAndSum(nn.Module):
@@ -192,6 +212,67 @@ class GNNLayer(nn.Module):
         return new_feats
 
 
+class MPNNGraphRepr(nn.Module):
+    def __init__(self, **kwargs):
+        """
+        A basic framework of MPNN-like GNN for graph representative learning
+        """
+        super(MPNNGraphRepr, self).__init__()
+        self.gnn_layers = nn.ModuleList([])
+        self.readout = None
+        self.build_gnn_layers(**kwargs)
+        self.build_readout(**kwargs)
+        self.gnn_out_nfeats = kwargs["gnn_out_nfeats"]
+        self.n_tasks = kwargs["n_tasks"]
+
+    def forward(self, bg, node_feats, edge_feats, extra_embedding=None, **kwargs):
+        """
+        :param bg: Batched DGL graph, processing multiple molecules in parallel
+        :param node_feats: FloatTensor of shape (N, M1)
+            N: the total number of atoms in the batched graph
+            M1: the input atom feature size
+        :param e_feats: original features of edges
+        :param norm:
+        :return:
+            prediction_all: the predicted label
+            mol_embedding: the vector features from MPNN
+            weight: the self attention weight using for embedding
+        """
+        if bg == None:
+            return {
+                "mol_embedding": [torch.zeros(self.gnn_out_nfeats) for i in range(self.n_tasks)],
+                "weight": None
+            }
+
+        for gnn in self.gnn_layers:
+            if gnn.model_type == "RGCN":
+                node_feats = gnn(bg, node_feats, edge_feats, norm=None)
+            elif gnn.model_type in ["GGNN", "MPNN0"]:
+                node_feats = gnn(bg, node_feats, edge_feats)
+
+        mol_embedding, weight = self.readout(bg, node_feats)
+        if extra_embedding != None:
+            for i in range(len(mol_embedding)):
+                mol_embedding[i] = torch.cat((mol_embedding[i], extra_embedding), axis=1)
+                # print(mol_embedding[i].shape)
+        return {
+            "mol_embedding": mol_embedding,
+            "weight": weight
+        }
+
+    def build_gnn_layers(self, gnn_in_nfeats, gnn_hidden_nfeats, **kwargs):
+        in_nfeats = gnn_in_nfeats
+        for out_nfeats in gnn_hidden_nfeats:
+            self.gnn_layers.append(GNNLayer(in_nfeats, out_nfeats, **kwargs))
+            in_nfeats = out_nfeats
+
+    def build_readout(self, readout_type="weight_and_sum", **kwargs):
+        if readout_type == "weight_and_sum":
+            self.readout = WeightAndSum(**kwargs)
+        elif readout_type == "average":
+            self.readout = Average(**kwargs)
+
+
 class MPNN(nn.Module):
     def __init__(self, **kwargs):
         """
@@ -242,4 +323,4 @@ class MPNN(nn.Module):
         if readout_type == "weight_and_sum":
             self.readout = WeightAndSum(**kwargs)
         elif readout_type == "average":
-            self.readout = mean_nodes
+            self.readout = Average(**kwargs)

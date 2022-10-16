@@ -1,0 +1,520 @@
+nohup: ignoring input
+Using backend: pytorch
+WARNING:root:No normalization for BCUT2D_MWHI
+WARNING:root:No normalization for BCUT2D_MWLOW
+WARNING:root:No normalization for BCUT2D_CHGHI
+WARNING:root:No normalization for BCUT2D_CHGLO
+WARNING:root:No normalization for BCUT2D_LOGPHI
+WARNING:root:No normalization for BCUT2D_LOGPLOW
+WARNING:root:No normalization for BCUT2D_MRHI
+WARNING:root:No normalization for BCUT2D_MRLOW
+device: cuda: 1
+gnn_in_nfeats: 74
+num_rels: 1400
+Processing dgl graphs from scratch...
+Processing dgl graphs from scratch...
+Processing dgl graphs from scratch...
+gnn_out_nfeats: 128
+fcn_in_nfeats: 328
+For metric r2, the higher the better
+epoch 1/1000, training r2 -0.5409
+epoch 1/1000 (warmup), validation -0.5609
+epoch 2/1000, training r2 -0.2202
+epoch 2/1000 (warmup), validation 0.2866
+epoch 3/1000, training r2 -0.1183
+epoch 3/1000 (warmup), validation 0.3078
+epoch 4/1000, training r2 -0.0519
+epoch 4/1000 (warmup), validation 0.1848
+epoch 5/1000, training r2 0.0164
+epoch 5/1000 (warmup), validation -0.4424
+epoch 6/1000, training r2 0.0929
+epoch 6/1000 (warmup), validation -0.6778
+epoch 7/1000, training r2 0.1581
+epoch 7/1000 (warmup), validation -1.2598
+epoch 8/1000, training r2 0.2275
+epoch 8/1000 (warmup), validation -1.4814
+epoch 9/1000, training r2 0.3123
+epoch 9/1000 (warmup), validation -1.3245
+epoch 10/1000, training r2 0.3935
+epoch 10/1000 (warmup), validation -1.8225
+epoch 11/1000, training r2 0.4510
+epoch 11/1000 (warmup), validation -1.1086
+epoch 12/1000, training r2 0.5435
+epoch 12/1000 (warmup), validation -1.0335
+epoch 13/1000, training r2 0.6082
+epoch 13/1000 (warmup), validation -0.6438
+epoch 14/1000, training r2 0.6589
+epoch 14/1000 (warmup), validation -0.1038
+epoch 15/1000, training r2 0.7229
+epoch 15/1000 (warmup), validation -0.3782
+epoch 16/1000, training r2 0.7455
+epoch 16/1000 (warmup), validation 0.0294
+epoch 17/1000, training r2 0.7647
+epoch 17/1000 (warmup), validation 0.1094
+epoch 18/1000, training r2 0.8019
+epoch 18/1000 (warmup), validation -0.1410
+epoch 19/1000, training r2 0.8136
+epoch 19/1000 (warmup), validation 0.1471
+epoch 20/1000, training r2 0.8195
+epoch 20/1000 (warmup), validation -0.1628
+epoch 21/1000, training r2 0.8347
+epoch 21/1000 (warmup), validation 0.1214
+epoch 22/1000, training r2 0.8446
+epoch 22/1000 (warmup), validation 0.1870
+epoch 23/1000, training r2 0.8446
+epoch 23/1000 (warmup), validation 0.1694
+epoch 24/1000, training r2 0.8516
+epoch 24/1000 (warmup), validation 0.2341
+epoch 25/1000, training r2 0.8469
+epoch 25/1000 (warmup), validation 0.2115
+epoch 26/1000, training r2 0.8671
+epoch 26/1000 (warmup), validation 0.1548
+epoch 27/1000, training r2 0.8597
+epoch 27/1000 (warmup), validation 0.1670
+epoch 28/1000, training r2 0.8625
+epoch 28/1000 (warmup), validation 0.2086
+epoch 29/1000, training r2 0.8644
+epoch 29/1000 (warmup), validation 0.1566
+epoch 30/1000, training r2 0.8689
+epoch 30/1000 (warmup), validation 0.1162
+epoch 31/1000, training r2 0.8852
+epoch 31/1000 (warmup), validation 0.2298
+epoch 32/1000, training r2 0.8779
+epoch 32/1000 (warmup), validation 0.1052
+epoch 33/1000, training r2 0.8775
+epoch 33/1000 (warmup), validation 0.1641
+epoch 34/1000, training r2 0.8742
+epoch 34/1000 (warmup), validation 0.1179
+epoch 35/1000, training r2 0.8726
+epoch 35/1000 (warmup), validation 0.1008
+epoch 36/1000, training r2 0.8942
+epoch 36/1000 (warmup), validation 0.1368
+epoch 37/1000, training r2 0.8921
+epoch 37/1000 (warmup), validation 0.0393
+epoch 38/1000, training r2 0.8752
+epoch 38/1000 (warmup), validation -0.0061
+epoch 39/1000, training r2 0.8994
+epoch 39/1000 (warmup), validation 0.1092
+epoch 40/1000, training r2 0.8992
+epoch 40/1000 (warmup), validation -0.0273
+epoch 41/1000, training r2 0.8791
+epoch 41/1000 (warmup), validation 0.0323
+epoch 42/1000, training r2 0.8990
+epoch 42/1000 (warmup), validation -0.0369
+epoch 43/1000, training r2 0.8824
+epoch 43/1000 (warmup), validation -0.0775
+epoch 44/1000, training r2 0.8944
+epoch 44/1000 (warmup), validation 0.0751
+epoch 45/1000, training r2 0.8875
+epoch 45/1000 (warmup), validation -0.0083
+epoch 46/1000, training r2 0.8971
+epoch 46/1000 (warmup), validation 0.0639
+epoch 47/1000, training r2 0.8970
+epoch 47/1000 (warmup), validation -0.0685
+epoch 48/1000, training r2 0.8993
+epoch 48/1000 (warmup), validation 0.1218
+epoch 49/1000, training r2 0.8970
+epoch 49/1000 (warmup), validation 0.1167
+epoch 50/1000, training r2 0.8998
+epoch 50/1000 (warmup), validation 0.0699
+epoch 51/1000, training r2 0.9066
+epoch 51/1000 (warmup), validation 0.0618
+epoch 52/1000, training r2 0.9107
+epoch 52/1000, validation -0.0707, best validation -0.0707
+epoch 53/1000, training r2 0.9156
+epoch 53/1000, validation 0.0310, best validation 0.0310
+epoch 54/1000, training r2 0.9149
+EarlyStopping counter: 1 out of 100
+epoch 54/1000, validation 0.0221, best validation 0.0310
+epoch 55/1000, training r2 0.9024
+EarlyStopping counter: 2 out of 100
+epoch 55/1000, validation -0.0156, best validation 0.0310
+epoch 56/1000, training r2 0.8994
+EarlyStopping counter: 3 out of 100
+epoch 56/1000, validation 0.0210, best validation 0.0310
+epoch 57/1000, training r2 0.9011
+EarlyStopping counter: 4 out of 100
+epoch 57/1000, validation -0.0662, best validation 0.0310
+epoch 58/1000, training r2 0.8991
+EarlyStopping counter: 5 out of 100
+epoch 58/1000, validation 0.0109, best validation 0.0310
+epoch 59/1000, training r2 0.9071
+EarlyStopping counter: 6 out of 100
+epoch 59/1000, validation 0.0101, best validation 0.0310
+epoch 60/1000, training r2 0.9143
+EarlyStopping counter: 7 out of 100
+epoch 60/1000, validation 0.0263, best validation 0.0310
+epoch 61/1000, training r2 0.9051
+EarlyStopping counter: 8 out of 100
+epoch 61/1000, validation 0.0125, best validation 0.0310
+epoch 62/1000, training r2 0.9033
+EarlyStopping counter: 9 out of 100
+epoch 62/1000, validation 0.0185, best validation 0.0310
+epoch 63/1000, training r2 0.9077
+epoch 63/1000, validation 0.1431, best validation 0.1431
+epoch 64/1000, training r2 0.9164
+EarlyStopping counter: 1 out of 100
+epoch 64/1000, validation -0.0307, best validation 0.1431
+epoch 65/1000, training r2 0.9144
+EarlyStopping counter: 2 out of 100
+epoch 65/1000, validation 0.1032, best validation 0.1431
+epoch 66/1000, training r2 0.9155
+EarlyStopping counter: 3 out of 100
+epoch 66/1000, validation 0.0282, best validation 0.1431
+epoch 67/1000, training r2 0.9230
+EarlyStopping counter: 4 out of 100
+epoch 67/1000, validation 0.0604, best validation 0.1431
+epoch 68/1000, training r2 0.9157
+EarlyStopping counter: 5 out of 100
+epoch 68/1000, validation -0.0796, best validation 0.1431
+epoch 69/1000, training r2 0.9224
+EarlyStopping counter: 6 out of 100
+epoch 69/1000, validation -0.0491, best validation 0.1431
+epoch 70/1000, training r2 0.9170
+EarlyStopping counter: 7 out of 100
+epoch 70/1000, validation -0.0154, best validation 0.1431
+epoch 71/1000, training r2 0.9227
+EarlyStopping counter: 8 out of 100
+epoch 71/1000, validation -0.0559, best validation 0.1431
+epoch 72/1000, training r2 0.9122
+EarlyStopping counter: 9 out of 100
+epoch 72/1000, validation -0.0113, best validation 0.1431
+epoch 73/1000, training r2 0.9178
+EarlyStopping counter: 10 out of 100
+epoch 73/1000, validation 0.0480, best validation 0.1431
+epoch 74/1000, training r2 0.9260
+EarlyStopping counter: 11 out of 100
+epoch 74/1000, validation 0.0739, best validation 0.1431
+epoch 75/1000, training r2 0.9210
+EarlyStopping counter: 12 out of 100
+epoch 75/1000, validation 0.0153, best validation 0.1431
+epoch 76/1000, training r2 0.9272
+EarlyStopping counter: 13 out of 100
+epoch 76/1000, validation -0.0251, best validation 0.1431
+epoch 77/1000, training r2 0.9220
+EarlyStopping counter: 14 out of 100
+epoch 77/1000, validation 0.0525, best validation 0.1431
+epoch 78/1000, training r2 0.9272
+EarlyStopping counter: 15 out of 100
+epoch 78/1000, validation 0.0625, best validation 0.1431
+epoch 79/1000, training r2 0.9219
+EarlyStopping counter: 16 out of 100
+epoch 79/1000, validation 0.0895, best validation 0.1431
+epoch 80/1000, training r2 0.9219
+EarlyStopping counter: 17 out of 100
+epoch 80/1000, validation 0.0996, best validation 0.1431
+epoch 81/1000, training r2 0.9355
+EarlyStopping counter: 18 out of 100
+epoch 81/1000, validation 0.0666, best validation 0.1431
+epoch 82/1000, training r2 0.9246
+epoch 82/1000, validation 0.1573, best validation 0.1573
+epoch 83/1000, training r2 0.9297
+EarlyStopping counter: 1 out of 100
+epoch 83/1000, validation -0.0865, best validation 0.1573
+epoch 84/1000, training r2 0.9254
+EarlyStopping counter: 2 out of 100
+epoch 84/1000, validation 0.0744, best validation 0.1573
+epoch 85/1000, training r2 0.9106
+EarlyStopping counter: 3 out of 100
+epoch 85/1000, validation -0.0059, best validation 0.1573
+epoch 86/1000, training r2 0.9307
+EarlyStopping counter: 4 out of 100
+epoch 86/1000, validation -0.0558, best validation 0.1573
+epoch 87/1000, training r2 0.9399
+EarlyStopping counter: 5 out of 100
+epoch 87/1000, validation -0.0116, best validation 0.1573
+epoch 88/1000, training r2 0.9280
+EarlyStopping counter: 6 out of 100
+epoch 88/1000, validation 0.0101, best validation 0.1573
+epoch 89/1000, training r2 0.9152
+EarlyStopping counter: 7 out of 100
+epoch 89/1000, validation -0.1022, best validation 0.1573
+epoch 90/1000, training r2 0.9195
+EarlyStopping counter: 8 out of 100
+epoch 90/1000, validation 0.0507, best validation 0.1573
+epoch 91/1000, training r2 0.9193
+EarlyStopping counter: 9 out of 100
+epoch 91/1000, validation 0.0078, best validation 0.1573
+epoch 92/1000, training r2 0.9282
+EarlyStopping counter: 10 out of 100
+epoch 92/1000, validation -0.0202, best validation 0.1573
+epoch 93/1000, training r2 0.9287
+EarlyStopping counter: 11 out of 100
+epoch 93/1000, validation -0.0854, best validation 0.1573
+epoch 94/1000, training r2 0.9323
+EarlyStopping counter: 12 out of 100
+epoch 94/1000, validation -0.1228, best validation 0.1573
+epoch 95/1000, training r2 0.9149
+EarlyStopping counter: 13 out of 100
+epoch 95/1000, validation -0.1648, best validation 0.1573
+epoch 96/1000, training r2 0.9349
+EarlyStopping counter: 14 out of 100
+epoch 96/1000, validation 0.0003, best validation 0.1573
+epoch 97/1000, training r2 0.9425
+EarlyStopping counter: 15 out of 100
+epoch 97/1000, validation -0.1655, best validation 0.1573
+epoch 98/1000, training r2 0.9319
+EarlyStopping counter: 16 out of 100
+epoch 98/1000, validation -0.0746, best validation 0.1573
+epoch 99/1000, training r2 0.9375
+EarlyStopping counter: 17 out of 100
+epoch 99/1000, validation -0.0531, best validation 0.1573
+epoch 100/1000, training r2 0.9312
+EarlyStopping counter: 18 out of 100
+epoch 100/1000, validation -0.0703, best validation 0.1573
+epoch 101/1000, training r2 0.9378
+EarlyStopping counter: 19 out of 100
+epoch 101/1000, validation -0.0638, best validation 0.1573
+epoch 102/1000, training r2 0.9381
+EarlyStopping counter: 20 out of 100
+epoch 102/1000, validation -0.0687, best validation 0.1573
+epoch 103/1000, training r2 0.9350
+EarlyStopping counter: 21 out of 100
+epoch 103/1000, validation -0.0006, best validation 0.1573
+epoch 104/1000, training r2 0.9398
+EarlyStopping counter: 22 out of 100
+epoch 104/1000, validation -0.0416, best validation 0.1573
+epoch 105/1000, training r2 0.9359
+EarlyStopping counter: 23 out of 100
+epoch 105/1000, validation 0.0670, best validation 0.1573
+epoch 106/1000, training r2 0.9391
+EarlyStopping counter: 24 out of 100
+epoch 106/1000, validation -0.0053, best validation 0.1573
+epoch 107/1000, training r2 0.9392
+EarlyStopping counter: 25 out of 100
+epoch 107/1000, validation 0.0651, best validation 0.1573
+epoch 108/1000, training r2 0.9302
+EarlyStopping counter: 26 out of 100
+epoch 108/1000, validation 0.0288, best validation 0.1573
+epoch 109/1000, training r2 0.9303
+EarlyStopping counter: 27 out of 100
+epoch 109/1000, validation 0.0473, best validation 0.1573
+epoch 110/1000, training r2 0.9290
+EarlyStopping counter: 28 out of 100
+epoch 110/1000, validation 0.0109, best validation 0.1573
+epoch 111/1000, training r2 0.9368
+EarlyStopping counter: 29 out of 100
+epoch 111/1000, validation 0.0133, best validation 0.1573
+epoch 112/1000, training r2 0.9355
+EarlyStopping counter: 30 out of 100
+epoch 112/1000, validation 0.0465, best validation 0.1573
+epoch 113/1000, training r2 0.9323
+EarlyStopping counter: 31 out of 100
+epoch 113/1000, validation 0.0052, best validation 0.1573
+epoch 114/1000, training r2 0.9422
+EarlyStopping counter: 32 out of 100
+epoch 114/1000, validation 0.0342, best validation 0.1573
+epoch 115/1000, training r2 0.9400
+EarlyStopping counter: 33 out of 100
+epoch 115/1000, validation 0.0392, best validation 0.1573
+epoch 116/1000, training r2 0.9450
+EarlyStopping counter: 34 out of 100
+epoch 116/1000, validation 0.0442, best validation 0.1573
+epoch 117/1000, training r2 0.9361
+EarlyStopping counter: 35 out of 100
+epoch 117/1000, validation 0.0010, best validation 0.1573
+epoch 118/1000, training r2 0.9409
+EarlyStopping counter: 36 out of 100
+epoch 118/1000, validation 0.0063, best validation 0.1573
+epoch 119/1000, training r2 0.9383
+EarlyStopping counter: 37 out of 100
+epoch 119/1000, validation 0.0124, best validation 0.1573
+epoch 120/1000, training r2 0.9402
+EarlyStopping counter: 38 out of 100
+epoch 120/1000, validation -0.0429, best validation 0.1573
+epoch 121/1000, training r2 0.9411
+EarlyStopping counter: 39 out of 100
+epoch 121/1000, validation -0.0220, best validation 0.1573
+epoch 122/1000, training r2 0.9460
+EarlyStopping counter: 40 out of 100
+epoch 122/1000, validation 0.0171, best validation 0.1573
+epoch 123/1000, training r2 0.9449
+EarlyStopping counter: 41 out of 100
+epoch 123/1000, validation 0.0433, best validation 0.1573
+epoch 124/1000, training r2 0.9441
+EarlyStopping counter: 42 out of 100
+epoch 124/1000, validation -0.0056, best validation 0.1573
+epoch 125/1000, training r2 0.9497
+EarlyStopping counter: 43 out of 100
+epoch 125/1000, validation 0.0552, best validation 0.1573
+epoch 126/1000, training r2 0.9491
+EarlyStopping counter: 44 out of 100
+epoch 126/1000, validation 0.0074, best validation 0.1573
+epoch 127/1000, training r2 0.9305
+EarlyStopping counter: 45 out of 100
+epoch 127/1000, validation 0.1132, best validation 0.1573
+epoch 128/1000, training r2 0.9378
+EarlyStopping counter: 46 out of 100
+epoch 128/1000, validation 0.1104, best validation 0.1573
+epoch 129/1000, training r2 0.9450
+EarlyStopping counter: 47 out of 100
+epoch 129/1000, validation 0.1097, best validation 0.1573
+epoch 130/1000, training r2 0.9396
+EarlyStopping counter: 48 out of 100
+epoch 130/1000, validation 0.0728, best validation 0.1573
+epoch 131/1000, training r2 0.9409
+EarlyStopping counter: 49 out of 100
+epoch 131/1000, validation 0.0889, best validation 0.1573
+epoch 132/1000, training r2 0.9380
+EarlyStopping counter: 50 out of 100
+epoch 132/1000, validation 0.0634, best validation 0.1573
+epoch 133/1000, training r2 0.9355
+EarlyStopping counter: 51 out of 100
+epoch 133/1000, validation 0.0531, best validation 0.1573
+epoch 134/1000, training r2 0.9388
+EarlyStopping counter: 52 out of 100
+epoch 134/1000, validation 0.1069, best validation 0.1573
+epoch 135/1000, training r2 0.9387
+EarlyStopping counter: 53 out of 100
+epoch 135/1000, validation 0.0610, best validation 0.1573
+epoch 136/1000, training r2 0.9339
+EarlyStopping counter: 54 out of 100
+epoch 136/1000, validation 0.0739, best validation 0.1573
+epoch 137/1000, training r2 0.9402
+EarlyStopping counter: 55 out of 100
+epoch 137/1000, validation 0.1037, best validation 0.1573
+epoch 138/1000, training r2 0.9429
+EarlyStopping counter: 56 out of 100
+epoch 138/1000, validation 0.0153, best validation 0.1573
+epoch 139/1000, training r2 0.9421
+EarlyStopping counter: 57 out of 100
+epoch 139/1000, validation 0.1024, best validation 0.1573
+epoch 140/1000, training r2 0.9480
+EarlyStopping counter: 58 out of 100
+epoch 140/1000, validation 0.0890, best validation 0.1573
+epoch 141/1000, training r2 0.9271
+EarlyStopping counter: 59 out of 100
+epoch 141/1000, validation 0.0932, best validation 0.1573
+epoch 142/1000, training r2 0.9470
+EarlyStopping counter: 60 out of 100
+epoch 142/1000, validation 0.1217, best validation 0.1573
+epoch 143/1000, training r2 0.9300
+EarlyStopping counter: 61 out of 100
+epoch 143/1000, validation 0.0369, best validation 0.1573
+epoch 144/1000, training r2 0.9446
+EarlyStopping counter: 62 out of 100
+epoch 144/1000, validation 0.0452, best validation 0.1573
+epoch 145/1000, training r2 0.9415
+EarlyStopping counter: 63 out of 100
+epoch 145/1000, validation 0.1308, best validation 0.1573
+epoch 146/1000, training r2 0.9424
+EarlyStopping counter: 64 out of 100
+epoch 146/1000, validation 0.0914, best validation 0.1573
+epoch 147/1000, training r2 0.9526
+EarlyStopping counter: 65 out of 100
+epoch 147/1000, validation 0.0874, best validation 0.1573
+epoch 148/1000, training r2 0.9503
+EarlyStopping counter: 66 out of 100
+epoch 148/1000, validation 0.0503, best validation 0.1573
+epoch 149/1000, training r2 0.9498
+EarlyStopping counter: 67 out of 100
+epoch 149/1000, validation 0.0463, best validation 0.1573
+epoch 150/1000, training r2 0.9443
+EarlyStopping counter: 68 out of 100
+epoch 150/1000, validation 0.0400, best validation 0.1573
+epoch 151/1000, training r2 0.9443
+EarlyStopping counter: 69 out of 100
+epoch 151/1000, validation 0.0817, best validation 0.1573
+epoch 152/1000, training r2 0.9548
+EarlyStopping counter: 70 out of 100
+epoch 152/1000, validation 0.0440, best validation 0.1573
+epoch 153/1000, training r2 0.9497
+EarlyStopping counter: 71 out of 100
+epoch 153/1000, validation 0.0144, best validation 0.1573
+epoch 154/1000, training r2 0.9521
+EarlyStopping counter: 72 out of 100
+epoch 154/1000, validation 0.0452, best validation 0.1573
+epoch 155/1000, training r2 0.9485
+EarlyStopping counter: 73 out of 100
+epoch 155/1000, validation 0.0311, best validation 0.1573
+epoch 156/1000, training r2 0.9498
+EarlyStopping counter: 74 out of 100
+epoch 156/1000, validation 0.0778, best validation 0.1573
+epoch 157/1000, training r2 0.9437
+EarlyStopping counter: 75 out of 100
+epoch 157/1000, validation -0.0273, best validation 0.1573
+epoch 158/1000, training r2 0.9436
+EarlyStopping counter: 76 out of 100
+epoch 158/1000, validation 0.0386, best validation 0.1573
+epoch 159/1000, training r2 0.9456
+EarlyStopping counter: 77 out of 100
+epoch 159/1000, validation -0.0159, best validation 0.1573
+epoch 160/1000, training r2 0.9547
+EarlyStopping counter: 78 out of 100
+epoch 160/1000, validation 0.0661, best validation 0.1573
+epoch 161/1000, training r2 0.9428
+EarlyStopping counter: 79 out of 100
+epoch 161/1000, validation 0.1101, best validation 0.1573
+epoch 162/1000, training r2 0.9426
+EarlyStopping counter: 80 out of 100
+epoch 162/1000, validation 0.0802, best validation 0.1573
+epoch 163/1000, training r2 0.9501
+EarlyStopping counter: 81 out of 100
+epoch 163/1000, validation 0.1533, best validation 0.1573
+epoch 164/1000, training r2 0.9539
+EarlyStopping counter: 82 out of 100
+epoch 164/1000, validation 0.1219, best validation 0.1573
+epoch 165/1000, training r2 0.9502
+EarlyStopping counter: 83 out of 100
+epoch 165/1000, validation 0.0997, best validation 0.1573
+epoch 166/1000, training r2 0.9484
+EarlyStopping counter: 84 out of 100
+epoch 166/1000, validation 0.0468, best validation 0.1573
+epoch 167/1000, training r2 0.9482
+EarlyStopping counter: 85 out of 100
+epoch 167/1000, validation 0.0727, best validation 0.1573
+epoch 168/1000, training r2 0.9495
+EarlyStopping counter: 86 out of 100
+epoch 168/1000, validation 0.1026, best validation 0.1573
+epoch 169/1000, training r2 0.9448
+EarlyStopping counter: 87 out of 100
+epoch 169/1000, validation 0.0353, best validation 0.1573
+epoch 170/1000, training r2 0.9564
+EarlyStopping counter: 88 out of 100
+epoch 170/1000, validation 0.0378, best validation 0.1573
+epoch 171/1000, training r2 0.9527
+EarlyStopping counter: 89 out of 100
+epoch 171/1000, validation 0.0268, best validation 0.1573
+epoch 172/1000, training r2 0.9573
+EarlyStopping counter: 90 out of 100
+epoch 172/1000, validation 0.1315, best validation 0.1573
+epoch 173/1000, training r2 0.9356
+EarlyStopping counter: 91 out of 100
+epoch 173/1000, validation 0.0911, best validation 0.1573
+epoch 174/1000, training r2 0.9522
+EarlyStopping counter: 92 out of 100
+epoch 174/1000, validation 0.0719, best validation 0.1573
+epoch 175/1000, training r2 0.9507
+EarlyStopping counter: 93 out of 100
+epoch 175/1000, validation 0.0336, best validation 0.1573
+epoch 176/1000, training r2 0.9487
+EarlyStopping counter: 94 out of 100
+epoch 176/1000, validation 0.1238, best validation 0.1573
+epoch 177/1000, training r2 0.9494
+EarlyStopping counter: 95 out of 100
+epoch 177/1000, validation 0.0875, best validation 0.1573
+epoch 178/1000, training r2 0.9387
+EarlyStopping counter: 96 out of 100
+epoch 178/1000, validation 0.1027, best validation 0.1573
+epoch 179/1000, training r2 0.9525
+EarlyStopping counter: 97 out of 100
+epoch 179/1000, validation 0.0742, best validation 0.1573
+epoch 180/1000, training r2 0.9535
+EarlyStopping counter: 98 out of 100
+epoch 180/1000, validation 0.0961, best validation 0.1573
+epoch 181/1000, training r2 0.9378
+EarlyStopping counter: 99 out of 100
+epoch 181/1000, validation 0.0368, best validation 0.1573
+epoch 182/1000, training r2 0.9459
+EarlyStopping counter: 100 out of 100
+epoch 182/1000, validation 0.0289, best validation 0.1573
+[0.9654236284906045, 0.25710004568099976, 0.19077786803245544, 0.15730083574164966, 0.5594042539596558, 0.41449686884880066, 0.16319295449015325, 0.9188324809074402, 0.6614160537719727]
+********************************GNN_Arnot, RGCN, 1_times_result*******************************
+test_result: [[0.16319295449015325], [0.9188324809074402], [0.6614160537719727]]
+Time used: 0:2:12
+0    0.965424
+Name: train_lgHL_r2, dtype: float64
+0    0.2571
+Name: train_lgHL_rmse, dtype: float64
+0    0.190778
+Name: train_lgHL_mae, dtype: float64

@@ -1,0 +1,60 @@
+nohup: ignoring input
+Using backend: pytorch
+device: cuda: 1
+Processing dgl graphs from scratch...
+Processing dgl graphs from scratch...
+Processing dgl graphs from scratch...
+For metric r2, the higher the better
+epoch 1/1000, training r2 -1.4105
+epoch 1/1000, validation -1.1338, best validation -1.1338
+epoch 2/1000, training r2 -2.4187
+EarlyStopping counter: 1 out of 100
+epoch 2/1000, validation -1.1727, best validation -1.1338
+epoch 3/1000, training r2 -2.6121
+epoch 3/1000, validation -0.5950, best validation -0.5950
+epoch 4/1000, training r2 -2.8523
+epoch 4/1000, validation -0.0838, best validation -0.0838
+epoch 5/1000, training r2 -2.8491
+epoch 5/1000, validation 0.1114, best validation 0.1114
+epoch 6/1000, training r2 -2.8065
+epoch 6/1000, validation 0.1161, best validation 0.1161
+epoch 7/1000, training r2 -2.6895
+epoch 7/1000, validation 0.1454, best validation 0.1454
+epoch 8/1000, training r2 -2.5630
+epoch 8/1000, validation 0.1985, best validation 0.1985
+epoch 9/1000, training r2 -2.5245
+EarlyStopping counter: 1 out of 100
+epoch 9/1000, validation 0.1339, best validation 0.1985
+epoch 10/1000, training r2 -2.3437
+EarlyStopping counter: 2 out of 100
+epoch 10/1000, validation 0.1661, best validation 0.1985
+epoch 11/1000, training r2 -2.6020
+EarlyStopping counter: 3 out of 100
+epoch 11/1000, validation 0.0733, best validation 0.1985
+epoch 12/1000, training r2 -2.4352
+EarlyStopping counter: 4 out of 100
+epoch 12/1000, validation 0.1303, best validation 0.1985
+epoch 13/1000, training r2 -2.3622
+EarlyStopping counter: 5 out of 100
+epoch 13/1000, validation 0.1650, best validation 0.1985
+epoch 14/1000, training r2 -2.0876
+EarlyStopping counter: 6 out of 100
+epoch 14/1000, validation 0.1065, best validation 0.1985
+epoch 15/1000, training r2 -2.1708
+EarlyStopping counter: 7 out of 100
+epoch 15/1000, validation 0.1058, best validation 0.1985
+epoch 16/1000, training r2 -2.0633
+EarlyStopping counter: 8 out of 100
+epoch 16/1000, validation 0.0258, best validation 0.1985
+epoch 17/1000, training r2 -2.0792
+EarlyStopping counter: 9 out of 100
+epoch 17/1000, validation -0.0111, best validation 0.1985
+epoch 18/1000, training r2 -2.0465
+EarlyStopping counter: 10 out of 100
+epoch 18/1000, validation -0.1332, best validation 0.1985
+epoch 19/1000, training r2 -1.7928
+EarlyStopping counter: 11 out of 100
+epoch 19/1000, validation 0.0120, best validation 0.1985
+epoch 20/1000, training r2 -1.5783
+EarlyStopping counter: 12 out of 100
+epoch 20/1000, validation 0.0434, best validation 0.1985

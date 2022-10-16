@@ -5,7 +5,6 @@
     "version": "0.2.0",
     "configurations": [
 
-
         {
             "name": "Python: Current File",
             "type": "python",
@@ -13,7 +12,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
-        }
+        },
         {
             "name": "MGA debug",
             "type": "python",
@@ -22,10 +21,75 @@
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
             "env": {
-                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/MGA:/work02/home/wlluo/halflife/experiment/MGA/ArnotHL"
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/MGA:/work02/home/wlluo/halflife/experiment/MGA/FreeSolv"
             },
             "justMyCode": false,
-            "args": ["--config", "/work02/home/wlluo/halflife/experiment/MGA/ArnotHL/scaffold/config.json"]
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/MGA/FreeSolv/scaffold/config.json"]
+        },
+        {
+            "name": "scaffold MGA debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/scaffoldMGA:/work02/home/wlluo/halflife/experiment/scaffoldMGA/ArnotHL"
+            },
+            "justMyCode": false,
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/scaffoldMGA/ArnotHL/random/config.json"]
+        },
+        {
+            "name": "Evi-OOD-MGA Arnot s",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA:/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA/ArnotHL"
+            },
+            "justMyCode": false,
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA/ArnotHL/scaffold/config.json"]
+        },
+        {
+            "name": "Evi-OOD-MGA FreeSolv s",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA:/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA/FreeSolv"
+            },
+            "justMyCode": false,
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/Evi-OOD-MGA/FreeSolv/scaffold/config.json"]
+        },
+        {
+            "name": "Aqua-MGA binclass",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/Aqua-MGA:/work02/home/wlluo/halflife/experiment/Aqua-MGA/ObachHLC"
+            },
+            "justMyCode": false,
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/Aqua-MGA/ObachHLC/random/config.json"]
+        },
+        {
+            "name": "Aqua-MGA multiclass",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "/work02/home/wlluo/halflife:/work02/home/wlluo/halflife/experiment/Aqua-MGA:/work02/home/wlluo/halflife/experiment/Aqua-MGA/ObachHLC"
+            },
+            "justMyCode": false,
+            "args": ["--config", "/work02/home/wlluo/halflife/experiment/Aqua-MGA/ObachHLC/random3/config.json"]
         }
     ]
 }

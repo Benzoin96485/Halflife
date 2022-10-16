@@ -1,0 +1,51 @@
+{
+    "project_name": "GNN_Arnot",
+    "experiment_name": "RGCN",
+    
+    "data_config": {
+        "data_path": "data/basis/Arnot2016.csv",
+        "use_splitted": true,
+        "split_data_path": "/work02/home/wlluo/halflife/data/basis/Arnot2016_split/random_split",
+        "train_data": "train_full.csv",
+        "test_data": "test_full.csv",
+        "val_data": "val_full.csv",
+        "smi_col": "smiles",
+        "task_names": ["lgHL"],
+        "split_method": "random",
+        "split_ratio": [8, 1, 1]
+    },
+
+    "graph_config": {
+        "graph_type": "bigraph",
+        "atom_feat_name": "dgllife_canonical",
+        "bond_feat_name": "Relation",
+        "bond_feat_type": ["atom_pair", "bond_type", "is_conjugated", "is_in_ring", "stereo"]
+    },
+
+    "net_config": {
+        "gnn_hidden_nfeats": [64, 128],
+        "readout_type": "weight_and_sum",
+        "rgcn_loop": true,
+        "rgcn_dropout": 0.2,
+        "fcn_hidden_nfeats": [128, 128],
+        "fcn_out_nfeats": 4
+    },
+
+    "run_config": {
+        "seed_init": 114514,
+        "eval_times": 10,
+        "resplit_each_time": true,
+        "batch_size": 128,
+        "gpu": true,
+        "lr": 1e-3,
+        "weight_decay": 1e-5,
+        "metric": "r2",
+        "extra_metrics": ["rmse", "mae"],
+        "loss_name": "evidential",
+        "earlystop_mode": "higher",
+        "warmup_epochs": 50,
+        "num_epochs": 1000,
+        "patience": 100,
+        "lamda": 2
+    }
+}
